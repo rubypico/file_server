@@ -44,16 +44,16 @@ EOS
   end
 end
 
-# Server directory exists?
 unless File.exists? server.config[:document_root]
   puts <<EOS
-Not found server directory at #{server.config[:document_root]}.
+Not found server directory at "#{server.config[:document_root]}".
+
 Please create the directory and put the files you want to share.
+
 Or change the :document_root parameter.
 EOS
+else
+  puts server.url
+  server.run
 end
-
-# Run server
-puts server.url
-server.run
 
