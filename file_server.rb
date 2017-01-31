@@ -44,6 +44,14 @@ EOS
   end
 end
 
+# Create server directory
+unless File.exists? server.config[:document_root]
+  puts "Not found server directory."
+  puts "Create at #{server.config[:document_root]}."
+  File.mkdir server.config[:document_root]
+end
+
+# Run server
 puts server.url
 server.run
 
