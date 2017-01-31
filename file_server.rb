@@ -44,11 +44,13 @@ EOS
   end
 end
 
-# Create server directory
+# Server directory exists?
 unless File.exists? server.config[:document_root]
-  puts "Not found server directory."
-  puts "Create at #{server.config[:document_root]}."
-  File.mkdir server.config[:document_root]
+  puts <<EOS
+Not found server directory at #{server.config[:document_root]}.
+Please create the directory and put the files you want to share.
+Or change the :document_root parameter.
+EOS
 end
 
 # Run server
