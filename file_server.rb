@@ -64,21 +64,24 @@ EOS
   def run
     @server.run
   end
-end
-
-if __FILE__ == $0
-  server = FileServer.new
-
-  unless File.exists? server.config[:document_root]
-    puts <<EOS
-Not found server directory at "#{server.config[:document_root]}".
+  
+  def run_with_message
+    unless File.exists? @server.config[:document_root]
+      puts <<EOS
+Not found server directory at "#{@server.config[:document_root]}".
 
 Please create the directory and put the files you want to share.
 
 Or change the :document_root parameter.
 EOS
-  else
-    puts server.url
-    server.run
+    else
+      puts @server.url
+      @server.run
+    end
   end
+end
+
+if __FILE__ == $0
+  s = FileServer.new
+  s.run_with_message
 end
